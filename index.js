@@ -68,4 +68,17 @@ const readMe = [
 // 
 ];
 
-const 
+// function to write README file
+function writeToFile(fileName, data) {
+    return fs.writeFileSync(path.join(process.cwd(), fileName), data)
+}
+// function to initialize program
+function init() {
+    inquirer.prompt(readMe).then((inquirerResponses) => {
+        console.log('creating README');
+        writeToFile('README.md', generateMarkdown({...inquirerResponses}));
+        //... spread operator 
+    });
+}
+// function call to initialize program
+init();
